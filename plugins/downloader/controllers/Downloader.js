@@ -15,11 +15,24 @@ module.exports = {
    */
 
   index: async (ctx) => {
-    // Add your own logic here.
+    const {collection} = ctx.params;
+    const s = collection.endsWith('s') ? collection.substr(0, collection.length - 1) : collection;
+    const query = ctx.request.query || {};
+    const service = strapi.query(s);
 
-    // Send 200 `ok`
-    ctx.send({
-      message: 'ok'
-    });
+    console.log(query)
+    const filename = `${s}`;
+
+    let count = 0;
+    let data = [];
+    if (query._q != null) {
+      count = await service.countSearch(query);
+      if (count > 0) data = await service.search(query);
+    } else {
+      count = await service.count(query);
+      if (count > 0) data = await service.find(query);
+    }
+
+    ctx.send({count, data});
   }
 };

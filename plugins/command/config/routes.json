@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/:collection",
+      "handler": "Command.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/:collection",
+      "handler": "Command.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/:collection",
+      "handler": "Command.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

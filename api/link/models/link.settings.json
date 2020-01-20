@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "links",
+  "info": {
+    "name": "link"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "token": {
+      "type": "string"
+    },
+    "expired_at": {
+      "type": "datetime"
+    },
+    "filename": {
+      "type": "string"
+    },
+    "minetype": {
+      "type": "string"
+    }
+  }
+}
