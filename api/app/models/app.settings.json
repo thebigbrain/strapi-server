@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "apps",
+  "info": {
+    "name": "app"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "secret": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "layout": {
+      "model": "layout"
+    },
+    "role": {
+      "plugin": "users-permissions",
+      "model": "role"
+    }
+  }
+}

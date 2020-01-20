@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "orders",
+  "info": {
+    "name": "order"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "init_company": {
+      "type": "string"
+    },
+    "remark": {
+      "type": "text"
+    },
+    "end_price": {
+      "type": "date"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "collection_configs",
+  "info": {
+    "name": "CollectionConfig"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "collection_ops": {
+      "collection": "collection-operation"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

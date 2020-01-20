@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/:collection",
+      "handler": "Globalsearch.index",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

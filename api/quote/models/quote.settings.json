@@ -1,0 +1,58 @@
+{
+  "connection": "default",
+  "collectionName": "quotes",
+  "info": {
+    "name": "quote"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "latest": {
+      "type": "decimal"
+    },
+    "settlement": {
+      "type": "decimal"
+    },
+    "open": {
+      "type": "decimal"
+    },
+    "high": {
+      "type": "decimal"
+    },
+    "low": {
+      "type": "decimal"
+    },
+    "close": {
+      "type": "decimal"
+    },
+    "buy1": {
+      "type": "decimal"
+    },
+    "sell1": {
+      "type": "decimal"
+    },
+    "last_settlement": {
+      "type": "decimal"
+    },
+    "purchase": {
+      "type": "integer"
+    },
+    "sales": {
+      "type": "integer"
+    },
+    "open_interest": {
+      "type": "integer"
+    },
+    "trading_volume": {
+      "type": "integer"
+    }
+  }
+}

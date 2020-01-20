@@ -1,0 +1,35 @@
+{
+  "connection": "default",
+  "collectionName": "routes",
+  "info": {
+    "name": "route"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "icon": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "component": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "integer",
+      "default": 0
+    },
+    "props": {
+      "type": "text"
+    },
+    "parent": {
+      "model": "route"
+    }
+  }
+}

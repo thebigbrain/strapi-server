@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "layouts",
+  "info": {
+    "name": "layout"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "locale": {
+      "type": "string"
+    },
+    "route": {
+      "model": "route"
+    },
+    "collapsed": {
+      "type": "boolean"
+    },
+    "routePriorities": {
+      "type": "string"
+    }
+  }
+}

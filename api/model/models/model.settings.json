@@ -1,0 +1,28 @@
+{
+  "connection": "default",
+  "collectionName": "models",
+  "info": {
+    "name": "model"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "begin": {
+      "type": "date"
+    },
+    "holding_cost": {
+      "type": "decimal"
+    },
+    "sigma": {
+      "type": "decimal"
+    },
+    "risk_free_rate": {
+      "type": "decimal"
+    },
+    "expiry": {
+      "type": "date"
+    }
+  }
+}
