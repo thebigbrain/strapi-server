@@ -1,6 +1,4 @@
-const XLSX = require("xlsx");
 const querystring = require("querystring");
-const xl = require("excel4node");
 const Excel = require('exceljs');
 const stream = require('stream');
 
