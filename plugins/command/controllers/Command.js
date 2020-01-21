@@ -22,7 +22,7 @@ module.exports = {
     const service = strapi.query(s);
 
     let r = await service.create(body);
-
+    
     // Send 200 `ok`
     ctx.send(r);
   },

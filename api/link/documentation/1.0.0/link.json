@@ -522,33 +522,37 @@
           "id": {
             "type": "string"
           },
-          "token": {
-            "type": "string"
-          },
-          "expired_at": {
-            "type": "datetime"
-          },
           "filename": {
             "type": "string"
           },
-          "minetype": {
-            "type": "string"
+          "mimetype": {
+            "type": "string",
+            "default": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          },
+          "expired_at": {
+            "type": "integer"
+          },
+          "extension": {
+            "type": "string",
+            "default": ".xlsx"
           }
         }
       },
       "NewLink": {
         "properties": {
-          "token": {
-            "type": "string"
-          },
-          "expired_at": {
-            "type": "datetime"
-          },
           "filename": {
             "type": "string"
           },
-          "minetype": {
-            "type": "string"
+          "mimetype": {
+            "type": "string",
+            "default": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          },
+          "expired_at": {
+            "type": "integer"
+          },
+          "extension": {
+            "type": "string",
+            "default": ".xlsx"
           }
         }
       }

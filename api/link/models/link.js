@@ -1,4 +1,4 @@
-'use strict';
+const uuidv4 = require('uuid/v4');
 
 /**
  * Lifecycle callbacks for the `link` model.
@@ -31,7 +31,14 @@ module.exports = {
 
   // Before creating a value.
   // Fired before an `insert` query.
-  // beforeCreate: async (model, attrs, options) => {},
+  beforeCreate: async (model, attrs, options) => {
+    model.expired_at = new Date().getTime() + 1000 * 60 * 60;
+    // model.minetype = 'text/csv';
+    // model.extension = '.csv';
+
+    // model.extension = '.xlsx';
+    // model.minetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+  },
 
   // After creating a value.
   // Fired after an `insert` query.

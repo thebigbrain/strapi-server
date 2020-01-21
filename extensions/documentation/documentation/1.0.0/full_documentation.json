@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "01/20/2020 1:41:34 PM"
+    "x-generation-date": "01/20/2020 4:47:06 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -7071,33 +7071,37 @@
           "id": {
             "type": "string"
           },
-          "token": {
-            "type": "string"
-          },
-          "expired_at": {
-            "type": "datetime"
-          },
           "filename": {
             "type": "string"
           },
-          "minetype": {
-            "type": "string"
+          "mimetype": {
+            "type": "string",
+            "default": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          },
+          "expired_at": {
+            "type": "integer"
+          },
+          "extension": {
+            "type": "string",
+            "default": ".xlsx"
           }
         }
       },
       "NewLink": {
         "properties": {
-          "token": {
-            "type": "string"
-          },
-          "expired_at": {
-            "type": "datetime"
-          },
           "filename": {
             "type": "string"
           },
-          "minetype": {
-            "type": "string"
+          "mimetype": {
+            "type": "string",
+            "default": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          },
+          "expired_at": {
+            "type": "integer"
+          },
+          "extension": {
+            "type": "string",
+            "default": ".xlsx"
           }
         }
       },

@@ -9,17 +9,19 @@
     "timestamps": true
   },
   "attributes": {
-    "token": {
-      "type": "string"
-    },
-    "expired_at": {
-      "type": "datetime"
-    },
     "filename": {
       "type": "string"
     },
-    "minetype": {
-      "type": "string"
+    "mimetype": {
+      "type": "string",
+      "default": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    },
+    "expired_at": {
+      "type": "biginteger"
+    },
+    "extension": {
+      "type": "string",
+      "default": ".xlsx"
     }
   }
 }

@@ -2,7 +2,7 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/:collection",
+      "path": "/:token",
       "handler": "Downloader.index",
       "config": {
         "policies": []
