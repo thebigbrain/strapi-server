@@ -1,0 +1,19 @@
+{
+  "connection": "default",
+  "collectionName": "search_configs",
+  "info": {
+    "name": "searchConfig"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "columns": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    }
+  }
+}

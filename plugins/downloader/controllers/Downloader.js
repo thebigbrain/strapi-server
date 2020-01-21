@@ -41,6 +41,7 @@ module.exports = {
     }
 
     const count = await counter(query);
+    const  sc = await strapi.query('search-config').findOne({model: collection});
 
     let downloadName = [collection];
     (query.filters || []).forEach(v => downloadName.push(`${v.id}:${v.value}`));
@@ -48,7 +49,7 @@ module.exports = {
 
     const workbook = new Excel.Workbook();
     const sheet = workbook.addWorksheet('My Sheet');
-    sheet.columns = [{key: 'name'}, {key: 'code'}];
+    sheet.columns = JSON.parse(sc.columns);
 
     let _start = 0;
     const _limit = 100;
