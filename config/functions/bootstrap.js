@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * An asynchronous bootstrap function that runs before
@@ -11,5 +11,5 @@
  */
 
 module.exports = () => {
-    strapi.config.functions.quote_latest_price();
+  strapi.config.functions.quote_latest_price();
 };

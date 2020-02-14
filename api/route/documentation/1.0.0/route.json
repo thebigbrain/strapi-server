@@ -526,20 +526,16 @@
             "type": "string"
           },
           "path": {
-            "type": "string"
+            "type": "string",
+            "default": "/"
           },
           "name": {
-            "type": "string"
-          },
-          "component": {
-            "type": "string"
+            "type": "string",
+            "default": "根路径"
           },
           "priority": {
             "type": "integer",
             "default": 0
-          },
-          "props": {
-            "type": "string"
           },
           "parent": {
             "required": [
@@ -558,16 +554,46 @@
               "name": {
                 "type": "string"
               },
-              "component": {
-                "type": "string"
-              },
               "priority": {
                 "type": "integer"
               },
-              "props": {
+              "parent": {
                 "type": "string"
               },
-              "parent": {
+              "redirect": {
+                "type": "string"
+              },
+              "exact": {
+                "type": "boolean"
+              },
+              "ui": {
+                "type": "string"
+              }
+            }
+          },
+          "redirect": {
+            "type": "string"
+          },
+          "exact": {
+            "type": "boolean",
+            "default": false
+          },
+          "ui": {
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "initialProps": {
+                "type": "object"
+              },
+              "name": {
                 "type": "string"
               }
             }
@@ -580,22 +606,28 @@
             "type": "string"
           },
           "path": {
-            "type": "string"
+            "type": "string",
+            "default": "/"
           },
           "name": {
-            "type": "string"
-          },
-          "component": {
-            "type": "string"
+            "type": "string",
+            "default": "根路径"
           },
           "priority": {
             "type": "integer",
             "default": 0
           },
-          "props": {
+          "parent": {
             "type": "string"
           },
-          "parent": {
+          "redirect": {
+            "type": "string"
+          },
+          "exact": {
+            "type": "boolean",
+            "default": false
+          },
+          "ui": {
             "type": "string"
           }
         }

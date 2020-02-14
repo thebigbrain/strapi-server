@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/layouts": {
+    "/ui-components": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -10,9 +10,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Layout"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -51,7 +52,7 @@
         },
         "summary": "",
         "tags": [
-          "Layout"
+          "Ui-component"
         ],
         "parameters": [
           {
@@ -201,72 +202,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Layout"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Layout"
-        ],
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewLayout"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/layouts/count": {
-      "get": {
-        "deprecated": false,
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
                   "properties": {
-                    "count": {
-                      "type": "integer"
+                    "foo": {
+                      "type": "string"
                     }
                   }
                 }
@@ -306,12 +244,22 @@
         },
         "summary": "",
         "tags": [
-          "Layout"
+          "Ui-component"
         ],
-        "parameters": []
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewUi-component"
+              }
+            }
+          }
+        }
       }
     },
-    "/layouts/{id}": {
+    "/ui-components/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +269,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Layout"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -359,7 +311,64 @@
         },
         "summary": "",
         "tags": [
-          "Layout"
+          "Ui-component"
+        ],
+        "parameters": []
+      }
+    },
+    "/ui-components/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Ui-component"
         ],
         "parameters": [
           {
@@ -383,7 +392,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Layout"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -421,7 +434,7 @@
         },
         "summary": "",
         "tags": [
-          "Layout"
+          "Ui-component"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +442,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewLayout"
+                "$ref": "#/components/schemas/NewUi-component"
               }
             }
           }
@@ -495,7 +508,7 @@
         },
         "summary": "",
         "tags": [
-          "Layout"
+          "Ui-component"
         ],
         "parameters": [
           {
@@ -514,80 +527,43 @@
   },
   "components": {
     "schemas": {
-      "Layout": {
+      "Ui-component": {
         "required": [
-          "id"
+          "id",
+          "name"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "locale": {
+          "source": {
             "type": "string"
           },
-          "route": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "icon": {
-                "type": "string"
-              },
-              "path": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "priority": {
-                "type": "integer"
-              },
-              "parent": {
-                "type": "string"
-              },
-              "redirect": {
-                "type": "string"
-              },
-              "exact": {
-                "type": "boolean"
-              },
-              "ui": {
-                "type": "string"
-              }
-            }
+          "initialProps": {
+            "type": "object"
           },
-          "collapsed": {
-            "type": "boolean"
-          },
-          "routePriorities": {
+          "name": {
             "type": "string"
           }
         }
       },
-      "NewLayout": {
+      "NewUi-component": {
+        "required": [
+          "name"
+        ],
         "properties": {
-          "locale": {
+          "source": {
             "type": "string"
           },
-          "route": {
-            "type": "string"
+          "initialProps": {
+            "type": "object"
           },
-          "collapsed": {
-            "type": "boolean"
-          },
-          "routePriorities": {
+          "name": {
             "type": "string"
           }
         }
       }
     }
   },
-  "tags": [
-    {
-      "name": "Layout"
-    }
-  ]
+  "tags": []
 }

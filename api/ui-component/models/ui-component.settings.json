@@ -1,0 +1,24 @@
+{
+  "connection": "default",
+  "collectionName": "ui_components",
+  "info": {
+    "name": "UiComponent"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "source": {
+      "type": "text"
+    },
+    "initialProps": {
+      "type": "json"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

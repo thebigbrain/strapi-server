@@ -629,16 +629,19 @@
               "name": {
                 "type": "string"
               },
-              "component": {
-                "type": "string"
-              },
               "priority": {
                 "type": "integer"
               },
-              "props": {
+              "parent": {
                 "type": "string"
               },
-              "parent": {
+              "redirect": {
+                "type": "string"
+              },
+              "exact": {
+                "type": "boolean"
+              },
+              "ui": {
                 "type": "string"
               }
             }

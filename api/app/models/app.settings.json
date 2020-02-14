@@ -20,6 +20,9 @@
     "role": {
       "plugin": "users-permissions",
       "model": "role"
+    },
+    "origin": {
+      "type": "string"
     }
   }
 }

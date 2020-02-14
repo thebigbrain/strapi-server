@@ -1,4 +1,4 @@
-const { sanitizeEntity } = require('strapi-utils');
+const { sanitizeEntity } = require("strapi-utils");
 
 /**
  * Read the documentation (https://strapi.io/documentation/3.0.0-beta.x/concepts/controllers.html#core-controllers)
@@ -7,15 +7,19 @@ const { sanitizeEntity } = require('strapi-utils');
 
 module.exports = {
   find: async ctx => {
-    const {service, model} = strapi.config.functions.utils.getServiceModel('app');
+    const { service, model } = strapi.config.functions.utils.getServiceModel(
+      "app"
+    );
 
     let entities;
     let query = ctx.query;
 
     let role = null;
     if (ctx.state.user) {
-      role = ctx.state.user.role
+      role = ctx.state.user.role;
     }
+
+    // query["origin_contains"] = ctx.get("Origin");
 
     if (ctx.query._q) {
       entities = await service.search(query);
@@ -24,8 +28,11 @@ module.exports = {
     }
 
     let entity = entities[0];
+
+    if (!entity) return null;
+
     if (role) entity.role = role;
 
     return [sanitizeEntity(entity, { model })];
-  },
+  }
 };

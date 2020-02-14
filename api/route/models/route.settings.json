@@ -13,23 +13,29 @@
       "type": "string"
     },
     "path": {
-      "type": "string"
+      "type": "string",
+      "default": "/"
     },
     "name": {
-      "type": "string"
-    },
-    "component": {
-      "type": "string"
+      "type": "string",
+      "default": "根路径"
     },
     "priority": {
       "type": "integer",
       "default": 0
     },
-    "props": {
-      "type": "text"
-    },
     "parent": {
       "model": "route"
+    },
+    "redirect": {
+      "type": "string"
+    },
+    "exact": {
+      "type": "boolean",
+      "default": false
+    },
+    "ui": {
+      "model": "ui-component"
     }
   }
 }
