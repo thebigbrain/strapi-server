@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/wechat-miniapps",
+      "handler": "wechat-miniapp.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/wechat-miniapps/count",
+      "handler": "wechat-miniapp.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/wechat-miniapps/:id",
+      "handler": "wechat-miniapp.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/wechat-miniapps",
+      "handler": "wechat-miniapp.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/wechat-miniapps/:id",
+      "handler": "wechat-miniapp.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/wechat-miniapps/:id",
+      "handler": "wechat-miniapp.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

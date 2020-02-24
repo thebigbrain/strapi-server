@@ -1,0 +1,16 @@
+{
+  "info": {
+    "name": "wechatPublic"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "openId": {
+      "type": "string"
+    }
+  },
+  "connection": "default",
+  "collectionName": "wechat_publics"
+}

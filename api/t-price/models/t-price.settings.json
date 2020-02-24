@@ -1,0 +1,58 @@
+{
+  "connection": "default",
+  "collectionName": "t_prices",
+  "info": {
+    "name": "t-price"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "price": {
+      "type": "string"
+    },
+    "call_buy": {
+      "type": "string"
+    },
+    "call_sell": {
+      "type": "string"
+    },
+    "call_buy_percent": {
+      "type": "string"
+    },
+    "call_sell_percent": {
+      "type": "string"
+    },
+    "call_buy_vol": {
+      "type": "string"
+    },
+    "call_sell_vol": {
+      "type": "string"
+    },
+    "put_buy": {
+      "type": "string"
+    },
+    "put_sell": {
+      "type": "string"
+    },
+    "put_buy_percent": {
+      "type": "string"
+    },
+    "put_sell_percent": {
+      "type": "string"
+    },
+    "put_buy_vol": {
+      "type": "string"
+    },
+    "put_sell_vol": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

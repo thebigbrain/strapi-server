@@ -566,6 +566,24 @@
           },
           "trading_volume": {
             "type": "integer"
+          },
+          "sellPer": {
+            "type": "string"
+          },
+          "buyPer": {
+            "type": "string"
+          },
+          "sellVol": {
+            "type": "string"
+          },
+          "buyVol": {
+            "type": "string"
+          },
+          "buyPrice": {
+            "type": "string"
+          },
+          "sellPrice": {
+            "type": "string"
           }
         }
       },
@@ -615,6 +633,24 @@
           },
           "trading_volume": {
             "type": "integer"
+          },
+          "sellPer": {
+            "type": "string"
+          },
+          "buyPer": {
+            "type": "string"
+          },
+          "sellVol": {
+            "type": "string"
+          },
+          "buyVol": {
+            "type": "string"
+          },
+          "buyPrice": {
+            "type": "string"
+          },
+          "sellPrice": {
+            "type": "string"
           }
         }
       }
