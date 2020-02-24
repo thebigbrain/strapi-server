@@ -3,9 +3,19 @@
     {
       "method": "POST",
       "path": "/auth/phone",
-      "handler": "AuthPhone.index",
+      "handler": "Phone.login",
       "config": {
-        "policies": []
+        "policies": [],
+        "prefix": false
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/auth/vericode",
+      "handler": "Phone.vericode",
+      "config": {
+        "policies": [],
+        "prefix": false
       }
     }
   ]

@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "wechat_miniapps",
   "info": {
     "name": "wechatMiniapp"
   },
@@ -10,7 +12,5 @@
     "openId": {
       "type": "string"
     }
-  },
-  "connection": "default",
-  "collectionName": "wechat_miniapps"
+  }
 }

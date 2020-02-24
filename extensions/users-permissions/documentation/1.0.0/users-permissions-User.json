@@ -1251,8 +1251,31 @@
               }
             }
           },
-          "phone": {
-            "type": "string"
+          "wechat_miniapp": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "openId": {
+                "type": "string"
+              }
+            }
+          },
+          "wechat_public": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "openId": {
+                "type": "string"
+              }
+            }
           }
         }
       },
@@ -1291,7 +1314,10 @@
           "role": {
             "type": "string"
           },
-          "phone": {
+          "wechat_miniapp": {
+            "type": "string"
+          },
+          "wechat_public": {
             "type": "string"
           }
         }
