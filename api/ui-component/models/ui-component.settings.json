@@ -16,9 +16,10 @@
       "type": "json"
     },
     "name": {
-      "type": "string",
-      "required": true,
-      "unique": true
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
     }
   }
 }

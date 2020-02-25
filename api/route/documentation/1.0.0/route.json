@@ -580,8 +580,7 @@
           },
           "ui": {
             "required": [
-              "id",
-              "name"
+              "id"
             ],
             "properties": {
               "id": {
@@ -594,6 +593,9 @@
                 "type": "object"
               },
               "name": {
+                "type": "string"
+              },
+              "version": {
                 "type": "string"
               }
             }

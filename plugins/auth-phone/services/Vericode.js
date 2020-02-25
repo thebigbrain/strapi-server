@@ -2,29 +2,38 @@ const vericodeCache = new Map();
 
 const now = () => new Date().getTime();
 
+function sendToPhone(phone, code) {
+  console.log(`send to ${phone}, ${code}`);
+}
+
 module.exports = {
   sendCode: async phone => {
     if (!vericodeCache.has(phone)) {
       vericodeCache.set(phone, []);
     }
 
-    let c = vericodeCache.get(phone);
+    let codes = vericodeCache.get(phone);
+
+    let c = codes.find(v => v.createdAt + 60 * 1000 > now());
+    if (c) return "60秒内不能重复发送";
 
     const code = Math.random()
       .toString()
       .split(".")[1]
       .substr(0, 4);
 
-    c.push({ code, createdAt: now() });
+    codes.push({ code, createdAt: now() });
+
+    sendToPhone(phone, code);
+
     return code;
   },
   verify: async (phone, code) => {
-    const item = vericodeCache.get(phone);
+    if (!vericodeCache.has(phone)) return false;
 
-    if (!item) return false;
+    const codes = vericodeCache.get(phone);
+    const c = codes.find(v => v.code === code);
 
-    const c = item.find(v => v.code === code);
-
-    return c.createdAt + 5 * 60 * 1000 > now();
+    return c && c.createdAt + 5 * 60 * 1000 > now();
   }
 };
