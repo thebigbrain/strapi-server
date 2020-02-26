@@ -1,0 +1,9 @@
+{
+  "connection": "default",
+  "collectionName": "users-permissions_provider",
+  "info": {
+    "name": "provider",
+    "description": ""
+  },
+  "attributes": {}
+}

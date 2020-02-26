@@ -11,7 +11,6 @@ const request = require("request");
 // Purest strategies.
 const purest = require("purest")({ request });
 const purestConfig = require("@purest/providers");
-const uuid = require("uuid/v4");
 
 /**
  * Connect thanks to a third-party provider.
@@ -37,15 +36,18 @@ exports.connect = (provider, query) => {
         return reject([null, err]);
       }
 
-      // We need at least the mail.
-      if (!profile.email) {
-        return reject([null, { message: "Email was not available." }]);
-      }
+      const prov = `provider_${provider}`;
 
       try {
         const users = await strapi.query("user", "users-permissions").find({
-          email: profile.email
+          [prov]: profile[prov]
         });
+
+        const user = _.find(users, { provider });
+
+        if (!_.isEmpty(user) && user.username) {
+          return resolve([user, null]);
+        }
 
         const advanced = await strapi
           .store({
@@ -56,34 +58,6 @@ exports.connect = (provider, query) => {
           })
           .get();
 
-        if (
-          _.isEmpty(_.find(users, { provider })) &&
-          !advanced.allow_register
-        ) {
-          return resolve([
-            null,
-            [{ messages: [{ id: "Auth.advanced.allow_register" }] }],
-            "Register action is actualy not available."
-          ]);
-        }
-
-        const user = _.find(users, { provider });
-
-        if (!_.isEmpty(user)) {
-          return resolve([user, null]);
-        }
-
-        if (
-          !_.isEmpty(_.find(users, user => user.provider !== provider)) &&
-          advanced.unique_email
-        ) {
-          return resolve([
-            null,
-            [{ messages: [{ id: "Auth.form.error.email.taken" }] }],
-            "Email is already taken."
-          ]);
-        }
-
         // Retrieve default role.
         const defaultRole = await strapi
           .query("role", "users-permissions")
@@ -91,9 +65,8 @@ exports.connect = (provider, query) => {
 
         // Create the new user.
         const params = _.assign(profile, {
-          provider: provider,
-          role: defaultRole.id,
-          confirmed: true
+          [`provider_${provider}`]: id,
+          role: defaultRole.id
         });
 
         const createdUser = await strapi
@@ -128,85 +101,6 @@ const getProfile = async (provider, query, callback) => {
     .get();
 
   switch (provider) {
-    case "discord": {
-      const discord = purest({
-        provider: "discord",
-        config: {
-          discord: {
-            "https://discordapp.com/api/": {
-              __domain: {
-                auth: {
-                  auth: { bearer: "[0]" }
-                }
-              },
-              "{endpoint}": {
-                __path: {
-                  alias: "__default"
-                }
-              }
-            }
-          }
-        }
-      });
-      discord
-        .query()
-        .get("users/@me")
-        .auth(access_token)
-        .request((err, res, body) => {
-          if (err) {
-            callback(err);
-          } else {
-            // Combine username and discriminator because discord username is not unique
-            var username = `${body.username}#${body.discriminator}`;
-            callback(null, {
-              username: username,
-              email: body.email
-            });
-          }
-        });
-      break;
-    }
-    case "facebook": {
-      const facebook = purest({
-        provider: "facebook",
-        config: purestConfig
-      });
-
-      facebook
-        .query()
-        .get("me?fields=name,email")
-        .auth(access_token)
-        .request((err, res, body) => {
-          if (err) {
-            callback(err);
-          } else {
-            callback(null, {
-              username: body.name,
-              email: body.email
-            });
-          }
-        });
-      break;
-    }
-    case "google": {
-      const google = purest({ provider: "google", config: purestConfig });
-
-      google
-        .query("oauth")
-        .get("tokeninfo")
-        .qs({ access_token })
-        .request((err, res, body) => {
-          if (err) {
-            callback(err);
-          } else {
-            callback(null, {
-              username: body.email.split("@")[0],
-              email: body.email
-            });
-          }
-        });
-      break;
-    }
     case "github": {
       const github = purest({
         provider: "github",
@@ -267,104 +161,9 @@ const getProfile = async (provider, query, callback) => {
       );
       break;
     }
-    case "microsoft": {
-      const microsoft = purest({
-        provider: "microsoft",
-        config: purestConfig
-      });
-
-      microsoft
-        .query()
-        .get("me")
-        .auth(access_token)
-        .request((err, res, body) => {
-          if (err) {
-            callback(err);
-          } else {
-            callback(null, {
-              username: body.userPrincipalName,
-              email: body.userPrincipalName
-            });
-          }
-        });
-      break;
-    }
-    case "twitter": {
-      const twitter = purest({
-        provider: "twitter",
-        config: purestConfig,
-        key: grant.twitter.key,
-        secret: grant.twitter.secret
-      });
-
-      twitter
-        .query()
-        .get("account/verify_credentials")
-        .auth(access_token, query.access_secret)
-        .qs({ screen_name: query["raw[screen_name]"], include_email: "true" })
-        .request((err, res, body) => {
-          if (err) {
-            callback(err);
-          } else {
-            callback(null, {
-              username: body.screen_name,
-              email: body.email
-            });
-          }
-        });
-      break;
-    }
-    case "instagram": {
-      const instagram = purest({
-        config: purestConfig,
-        provider: "instagram",
-        key: grant.instagram.key,
-        secret: grant.instagram.secret
-      });
-
-      instagram
-        .query()
-        .get("users/self")
-        .qs({ access_token })
-        .request((err, res, body) => {
-          if (err) {
-            callback(err);
-          } else {
-            callback(null, {
-              username: body.data.username,
-              email: `${body.data.username}@strapi.io` // dummy email as Instagram does not provide user email
-            });
-          }
-        });
-      break;
-    }
-    case "vk": {
-      const vk = purest({
-        provider: "vk",
-        config: purestConfig
-      });
-
-      vk.query()
-        .get("users.get")
-        .auth(access_token)
-        .qs({ id: query.raw.user_id, v: "5.013" })
-        .request((err, res, body) => {
-          if (err) {
-            callback(err);
-          } else {
-            callback(null, {
-              username: `${body.response[0].last_name} ${body.response[0].first_name}`,
-              email: query.raw.email
-            });
-          }
-        });
-      break;
-    }
     case "wechat": {
       const wechat = purest({
         provider: "wechat",
-        // key: grant.wechat.key,
-        // secret: grant.wechat.secret,
         config: {
           wechat: {
             "https://api.weixin.qq.com": {
@@ -378,21 +177,18 @@ const getProfile = async (provider, query, callback) => {
         }
       });
 
-      const openid = query.openid;
+      const openid = query.raw.openid;
 
       wechat
         .query("sns")
         .get("userinfo")
-        .qs({ access_token, openid })
+        .qs({ access_token, openid, lang: "zh_CN" })
         .request((err, res, body) => {
           if (err) {
             callback(err);
           } else {
-            console.log(body);
-            const username = uuid();
             callback(null, {
-              username: username,
-              email: `${username}@zhiweicloud.com` // dummy email as Instagram does not provide user email
+              username: openid
             });
           }
         });

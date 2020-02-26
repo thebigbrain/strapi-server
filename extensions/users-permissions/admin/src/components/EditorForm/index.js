@@ -48,82 +48,11 @@ function EditForm({ onChange, showLoaders, values }) {
             <div className="col-6"></div>
             <Input
               label={{
-                id: "users-permissions.EditForm.inputToggle.label.email"
-              }}
-              inputDescription={{
-                id: "users-permissions.EditForm.inputToggle.description.email"
-              }}
-              name="advanced.settings.unique_email"
-              onChange={onChange}
-              type="toggle"
-              value={get(settings, "unique_email")}
-            />
-            <div className="col-6"></div>
-            <Input
-              label={{
-                id: "users-permissions.EditForm.inputToggle.label.sign-up"
-              }}
-              inputDescription={{
-                id: "users-permissions.EditForm.inputToggle.description.sign-up"
-              }}
-              name="advanced.settings.allow_register"
-              onChange={onChange}
-              type="toggle"
-              value={get(settings, "allow_register")}
-            />
-            <div className="col-6"></div>
-            <Input
-              label={{
-                id:
-                  "users-permissions.EditForm.inputToggle.label.email-reset-password"
+                id: "users-permissions.EditForm.inputToggle.label.phone_bind"
               }}
               inputDescription={{
                 id:
-                  "users-permissions.EditForm.inputToggle.description.email-reset-password"
-              }}
-              name="advanced.settings.email_reset_password"
-              onChange={onChange}
-              type="text"
-              value={get(settings, "email_reset_password")}
-            />
-            <div className="col-6"></div>
-            <Input
-              label={{
-                id:
-                  "users-permissions.EditForm.inputToggle.label.email-confirmation"
-              }}
-              inputDescription={{
-                id:
-                  "users-permissions.EditForm.inputToggle.description.email-confirmation"
-              }}
-              name="advanced.settings.email_confirmation"
-              onChange={onChange}
-              type="toggle"
-              value={get(settings, "email_confirmation")}
-            />
-            <div className="col-6"></div>
-            <Input
-              label={{
-                id:
-                  "users-permissions.EditForm.inputToggle.label.email-confirmation-redirection"
-              }}
-              inputDescription={{
-                id:
-                  "users-permissions.EditForm.inputToggle.description.email-confirmation-redirection"
-              }}
-              name="advanced.settings.email_confirmation_redirection"
-              onChange={onChange}
-              type="text"
-              value={get(settings, "email_confirmation_redirection")}
-            />
-
-            <Input
-              label={{
-                id: "users-permissions.EditForm.inputToggle.label.phone-bind"
-              }}
-              inputDescription={{
-                id:
-                  "users-permissions.EditForm.inputToggle.description.phone-bind"
+                  "users-permissions.EditForm.inputToggle.description.phone_bind"
               }}
               name="advanced.settings.phone_bind"
               onChange={onChange}
@@ -134,11 +63,11 @@ function EditForm({ onChange, showLoaders, values }) {
             <Input
               label={{
                 id:
-                  "users-permissions.EditForm.inputToggle.label.email-confirmation-redirection"
+                  "users-permissions.EditForm.inputToggle.label.phone_bind_redirection"
               }}
               inputDescription={{
                 id:
-                  "users-permissions.EditForm.inputToggle.description.email-confirmation-redirection"
+                  "users-permissions.EditForm.inputToggle.description.phone_bind_redirection"
               }}
               name="advanced.settings.phone_bind_redirection"
               onChange={onChange}

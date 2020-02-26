@@ -116,58 +116,8 @@ module.exports = async () => {
     await pluginStore.set({ key: "grant", value: grantConfig });
   }
 
-  if (!(await pluginStore.get({ key: "email" }))) {
-    const value = {
-      reset_password: {
-        display: "Email.template.reset_password",
-        icon: "sync",
-        options: {
-          from: {
-            name: "Administration Panel",
-            email: "no-reply@strapi.io"
-          },
-          response_email: "",
-          object: "­Reset password",
-          message: `<p>We heard that you lost your password. Sorry about that!</p>
-
-<p>But don’t worry! You can use the following link to reset your password:</p>
-
-<p><%= URL %>?code=<%= TOKEN %></p>
-
-<p>Thanks.</p>`
-        }
-      },
-      email_confirmation: {
-        display: "Email.template.email_confirmation",
-        icon: "check-square",
-        options: {
-          from: {
-            name: "Administration Panel",
-            email: "no-reply@strapi.io"
-          },
-          response_email: "",
-          object: "Account confirmation",
-          message: `<p>Thank you for registering!</p>
-
-<p>You have to confirm your email address. Please click on the link below.</p>
-
-<p><%= URL %>?confirmation=<%= CODE %></p>
-
-<p>Thanks.</p>`
-        }
-      }
-    };
-
-    await pluginStore.set({ key: "email", value });
-  }
-
   if (!(await pluginStore.get({ key: "advanced" }))) {
     const value = {
-      unique_email: true,
-      allow_register: true,
-      email_confirmation: false,
-      email_confirmation_redirection: `http://${strapi.config.currentEnvironment.server.host}:${strapi.config.currentEnvironment.server.port}/admin`,
-      email_reset_password: `http://${strapi.config.currentEnvironment.server.host}:${strapi.config.currentEnvironment.server.port}/admin`,
       default_role: "authenticated",
       phone_bind: false,
       phone_bind_redirection: "/bind/phone"
@@ -175,8 +125,6 @@ module.exports = async () => {
 
     await pluginStore.set({ key: "advanced", value });
   }
-
-  console.log(strapi.config.publicUrl);
 
   return strapi.plugins[
     "users-permissions"
