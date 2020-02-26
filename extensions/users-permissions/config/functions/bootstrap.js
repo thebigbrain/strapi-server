@@ -88,6 +88,15 @@ module.exports = async () => {
       key: "",
       secret: "",
       callback: "/auth/instagram/callback"
+    },
+    wechat: {
+      enabled: false,
+      icon: "weixin",
+      key: "",
+      secret: "",
+      nonce: true,
+      callback: "/auth/wechat/callback",
+      scope: ["snsapi_userinfo"]
     }
   };
   const prevGrantConfig = (await pluginStore.get({ key: "grant" })) || {};
@@ -159,11 +168,15 @@ module.exports = async () => {
       email_confirmation: false,
       email_confirmation_redirection: `http://${strapi.config.currentEnvironment.server.host}:${strapi.config.currentEnvironment.server.port}/admin`,
       email_reset_password: `http://${strapi.config.currentEnvironment.server.host}:${strapi.config.currentEnvironment.server.port}/admin`,
-      default_role: "authenticated"
+      default_role: "authenticated",
+      phone_bind: false,
+      phone_bind_redirection: "/bind/phone"
     };
 
     await pluginStore.set({ key: "advanced", value });
   }
+
+  console.log(strapi.config.publicUrl);
 
   return strapi.plugins[
     "users-permissions"

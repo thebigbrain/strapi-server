@@ -39,7 +39,9 @@ async function createUser(ctx, phone) {
       username: phone,
       email: "test@gmail.com",
       password: uuid(),
-      role: role.id
+      role: role.id,
+      provider: "phone",
+      confirmed: true
     });
   }
 }

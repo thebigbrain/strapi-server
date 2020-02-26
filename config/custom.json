@@ -1,4 +1,5 @@
 {
   "myCustomConfiguration": "This configuration is accessible through strapi.config.myCustomConfiguration",
-  "publicRoleName": "Public"
+  "publicRoleName": "Public",
+  "publicUrl": "https://5b931887.ngrok.io"
 }
