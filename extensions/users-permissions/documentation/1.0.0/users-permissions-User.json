@@ -1251,7 +1251,7 @@
               }
             }
           },
-          "wechat_miniapp": {
+          "provider_wechat": {
             "required": [
               "id"
             ],
@@ -1259,21 +1259,14 @@
               "id": {
                 "type": "string"
               },
-              "openId": {
-                "type": "string"
-              }
-            }
-          },
-          "wechat_public": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
+              "provider": {
                 "type": "string"
               },
-              "openId": {
+              "provider_id": {
                 "type": "string"
+              },
+              "data": {
+                "type": "object"
               }
             }
           }
@@ -1314,10 +1307,7 @@
           "role": {
             "type": "string"
           },
-          "wechat_miniapp": {
-            "type": "string"
-          },
-          "wechat_public": {
+          "provider_wechat": {
             "type": "string"
           }
         }

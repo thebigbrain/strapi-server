@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "02/27/2020 10:58:25 AM"
+    "x-generation-date": "02/27/2020 2:38:51 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -10368,10 +10368,7 @@
                 "role": {
                   "type": "string"
                 },
-                "wechat_miniapp": {
-                  "type": "string"
-                },
-                "wechat_public": {
+                "provider_wechat": {
                   "type": "string"
                 }
               }
@@ -10534,7 +10531,7 @@
               }
             }
           },
-          "wechat_miniapp": {
+          "provider_wechat": {
             "required": [
               "id"
             ],
@@ -10542,21 +10539,14 @@
               "id": {
                 "type": "string"
               },
-              "openId": {
-                "type": "string"
-              }
-            }
-          },
-          "wechat_public": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
+              "provider": {
                 "type": "string"
               },
-              "openId": {
+              "provider_id": {
                 "type": "string"
+              },
+              "data": {
+                "type": "object"
               }
             }
           }
@@ -10597,10 +10587,7 @@
           "role": {
             "type": "string"
           },
-          "wechat_miniapp": {
-            "type": "string"
-          },
-          "wechat_public": {
+          "provider_wechat": {
             "type": "string"
           }
         }

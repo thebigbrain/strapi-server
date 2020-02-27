@@ -33,6 +33,7 @@ module.exports = {
     // Send 200 `ok`
     ctx.send(data);
   },
+
   async create(ctx) {
     const advanced = await strapi
       .store({

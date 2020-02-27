@@ -42,6 +42,7 @@ exports.connect = (provider, query) => {
         let createdProvider = await strapi
           .query("provider", "oauth-provider")
           .findOne({
+            provider,
             provider_id: providerParams.provider_id
           });
 
@@ -49,15 +50,6 @@ exports.connect = (provider, query) => {
           createdProvider = await strapi
             .query("provider", "oauth-provider")
             .create(providerParams);
-        }
-
-        const providerField = `provider_${provider}`;
-        const user = await strapi.query("user", "users-permissions").findOne({
-          [providerField]: createdProvider.id
-        });
-
-        if (!_.isEmpty(user) && user.username) {
-          return resolve([user, null]);
         }
 
         const advanced = await strapi
@@ -71,11 +63,20 @@ exports.connect = (provider, query) => {
 
         if (advanced.phone_bind) {
           return reject([
-            createProvider.id,
+            createdProvider.id,
             null,
             advanced.phone_bind_redirection,
             "phone-bind"
           ]);
+        }
+
+        const providerField = `provider_${provider}`;
+        const user = await strapi.query("user", "users-permissions").findOne({
+          [providerField]: createdProvider.id
+        });
+
+        if (user) {
+          return resolve([user, null]);
         }
 
         // Retrieve default role.
@@ -83,10 +84,14 @@ exports.connect = (provider, query) => {
           .query("role", "users-permissions")
           .findOne({ type: advanced.default_role }, []);
 
+        if (!profile.email)
+          profile.email = `${profile.username}@zhiweicloud.io`;
+
         // Create the new user.
         const params = _.assign(profile, {
           [providerField]: createdProvider.id,
-          role: defaultRole.id
+          role: defaultRole.id,
+          confirmed: true
         });
 
         const createdUser = await strapi
@@ -210,7 +215,7 @@ const getProfile = async (provider, query, callback) => {
             callback(
               null,
               {
-                username: openid
+                username: `${provider}_${openid}`
               },
               {
                 provider_id: openid,

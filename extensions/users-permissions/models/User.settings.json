@@ -53,11 +53,9 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "wechat_miniapp": {
-      "model": "wechat-miniapp"
-    },
-    "wechat_public": {
-      "model": "wechat-public"
+    "provider_wechat": {
+      "plugin": "oauth-provider",
+      "model": "provider"
     }
   }
 }

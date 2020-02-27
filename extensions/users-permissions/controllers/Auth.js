@@ -45,9 +45,8 @@ module.exports = {
         "users-permissions"
       ].services.providers.connect(provider, ctx.query);
     } catch ([data, error, redirection, errType]) {
-      console.log(error, data);
       if (data != null) {
-        return ctx.redirect(redirection);
+        return ctx.redirect(`${ctx.origin}${redirection}`);
       }
       return ctx.badRequest(null, error === "array" ? error[0] : error);
     }

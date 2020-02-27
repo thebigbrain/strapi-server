@@ -609,10 +609,7 @@
                 "role": {
                   "type": "string"
                 },
-                "wechat_miniapp": {
-                  "type": "string"
-                },
-                "wechat_public": {
+                "provider_wechat": {
                   "type": "string"
                 }
               }
