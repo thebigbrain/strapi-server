@@ -1,0 +1,14 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "oauth-provider",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    
+  }
+}

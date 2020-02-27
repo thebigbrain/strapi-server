@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "handler": "OauthProvider.index",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

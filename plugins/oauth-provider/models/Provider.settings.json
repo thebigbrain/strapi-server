@@ -1,9 +1,14 @@
 {
   "connection": "default",
-  "collectionName": "users-permissions_provider",
+  "collectionName": "",
   "info": {
     "name": "provider",
     "description": ""
   },
-  "attributes": {}
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    
+  }
 }

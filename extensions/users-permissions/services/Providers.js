@@ -31,19 +31,30 @@ exports.connect = (provider, query) => {
     }
 
     // Get the profile.
-    getProfile(provider, query, async (err, profile) => {
+    getProfile(provider, query, async (err, profile, providerParams = null) => {
       if (err) {
         return reject([null, err]);
       }
 
-      const prov = `provider_${provider}`;
+      if (!providerParams) reject([null, `Unknown provider: ${provider}.`]);
 
       try {
-        const users = await strapi.query("user", "users-permissions").find({
-          [prov]: profile[prov]
-        });
+        let createdProvider = await strapi
+          .query("provider", "oauth-provider")
+          .findOne({
+            provider_id: providerParams.provider_id
+          });
 
-        const user = _.find(users, { provider });
+        if (!createdProvider) {
+          createdProvider = await strapi
+            .query("provider", "oauth-provider")
+            .create(providerParams);
+        }
+
+        const providerField = `provider_${provider}`;
+        const user = await strapi.query("user", "users-permissions").findOne({
+          [providerField]: createdProvider.id
+        });
 
         if (!_.isEmpty(user) && user.username) {
           return resolve([user, null]);
@@ -58,6 +69,15 @@ exports.connect = (provider, query) => {
           })
           .get();
 
+        if (advanced.phone_bind) {
+          return reject([
+            createProvider.id,
+            null,
+            advanced.phone_bind_redirection,
+            "phone-bind"
+          ]);
+        }
+
         // Retrieve default role.
         const defaultRole = await strapi
           .query("role", "users-permissions")
@@ -65,7 +85,7 @@ exports.connect = (provider, query) => {
 
         // Create the new user.
         const params = _.assign(profile, {
-          [`provider_${provider}`]: id,
+          [providerField]: createdProvider.id,
           role: defaultRole.id
         });
 
@@ -187,9 +207,17 @@ const getProfile = async (provider, query, callback) => {
           if (err) {
             callback(err);
           } else {
-            callback(null, {
-              username: openid
-            });
+            callback(
+              null,
+              {
+                username: openid
+              },
+              {
+                provider_id: openid,
+                provider,
+                data: body
+              }
+            );
           }
         });
       break;

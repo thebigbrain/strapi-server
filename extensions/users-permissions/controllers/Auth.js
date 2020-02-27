@@ -44,12 +44,17 @@ module.exports = {
       [user, error] = await strapi.plugins[
         "users-permissions"
       ].services.providers.connect(provider, ctx.query);
-    } catch ([user, error]) {
+    } catch ([data, error, redirection, errType]) {
+      console.log(error, data);
+      if (data != null) {
+        return ctx.redirect(redirection);
+      }
       return ctx.badRequest(null, error === "array" ? error[0] : error);
     }
 
     if (!user) {
-      return ctx.badRequest(null, error === "array" ? error[0] : error);
+      if (error)
+        return ctx.badRequest(null, error === "array" ? error[0] : error);
     }
 
     ctx.send({
