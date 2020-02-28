@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/*",
+      "handler": "Html.static",
+      "config": {
+        "policies": [],
+        "prefix": false
+      }
+    }
+  ]
+}
