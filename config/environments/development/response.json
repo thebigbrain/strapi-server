@@ -8,5 +8,9 @@
   "poweredBy": {
     "enabled": true,
     "value": "Strapi <strapi.io>"
+  },
+  "html": {
+    "enabled": true,
+    "serverOrigin": ["http://localhost:1337", "https://af08f004.ngrok.io"]
   }
 }

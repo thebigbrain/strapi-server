@@ -52,16 +52,14 @@ module.exports = {
       .query("provider", "oauth-provider")
       .findOne({ provider, provider_id });
 
-    if (prov) {
-      return ctx.created(prov);
-    }
-
     try {
-      prov = await strapi.query("provider", "oauth-provider").create({
-        provider,
-        provider_id,
-        data
-      });
+      if (!prov) {
+        prov = await strapi.query("provider", "oauth-provider").create({
+          provider,
+          provider_id,
+          data
+        });
+      }
 
       ctx.created(prov);
     } catch (error) {
