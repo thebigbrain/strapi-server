@@ -3,7 +3,7 @@
     {
       "method": "GET",
       "path": "/",
-      "handler": "Appconf.index",
+      "handler": "AppConf.index",
       "config": {
         "policies": []
       }

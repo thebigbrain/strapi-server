@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * Appconf.js controller
+ * AppConf.js controller
  *
- * @description: A set of functions called "actions" of the `appconf` plugin.
+ * @description: A set of functions called "actions" of the `app-conf` plugin.
  */
 
 module.exports = {

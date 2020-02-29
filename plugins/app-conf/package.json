@@ -1,11 +1,11 @@
 {
-  "name": "strapi-plugin-appconf",
+  "name": "strapi-plugin-app-conf",
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "appconf",
+    "name": "app-conf",
     "icon": "plug",
-    "description": "Description of appconf plugin."
+    "description": "Description of app-conf plugin."
   },
   "dependencies": {},
   "author": {
