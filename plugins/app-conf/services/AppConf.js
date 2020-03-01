@@ -18,9 +18,15 @@ function getMatched(origin, ctxPath) {
 function getReadFileStream(matched, filePath = "index.html") {
   const publicPath = strapi.config.currentEnvironment.server.public.path;
   const basePath = (matched && matched.assetsBase) || ".";
-  return fs.createReadStream(
-    path.resolve(publicPath, path.join(basePath, filePath))
-  );
+  try {
+    return fs.createReadStream(
+      path.resolve(publicPath, path.join(basePath, filePath))
+    );
+  } catch (e) {
+    console.warn(e);
+  }
+
+  return null;
 }
 
 module.exports = {
