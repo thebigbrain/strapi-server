@@ -20,6 +20,7 @@
     "knex": "<0.20.9",
     "mime-types": "^2.1.26",
     "mysql": "^2.18.1",
+    "path-match": "^1.2.4",
     "pg": "^7.18.1",
     "sqlite3": "latest",
     "strapi": "3.0.0-beta.18.7",

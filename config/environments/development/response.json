@@ -10,7 +10,7 @@
     "value": "Strapi <strapi.io>"
   },
   "html": {
-    "enabled": true,
+    "enabled": false,
     "serverOrigin": ["http://localhost:1337", "https://af08f004.ngrok.io"]
   }
 }

@@ -1,4 +1,13 @@
 {
   "myCustomConfiguration": "This configuration is accessible through strapi.config.myCustomConfiguration",
-  "publicUrl": "https://af08f004.ngrok.io"
+  "publicUrl": "https://af08f004.ngrok.io",
+  "clients": {
+    "http://localhost:8000": {
+      "admin": {}
+    },
+    "http://localhost:1337": {
+      "/client": {},
+      "/admin": {}
+    }
+  }
 }

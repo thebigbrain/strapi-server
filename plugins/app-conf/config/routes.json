@@ -2,8 +2,17 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/",
+      "path": "/*",
       "handler": "AppConf.index",
+      "config": {
+        "policies": [],
+        "prefix": false
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "config",
+      "handler": "AppConf.updateConfig",
       "config": {
         "policies": []
       }
