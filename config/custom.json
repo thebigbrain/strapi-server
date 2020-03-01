@@ -6,7 +6,9 @@
       "admin": {}
     },
     "http://localhost:1337": {
-      "/client": {},
+      "/client": {
+        "assetsBase": "./client"
+      },
       "/admin": {}
     }
   }

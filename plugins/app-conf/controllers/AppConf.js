@@ -28,17 +28,17 @@ module.exports = {
       ctx.set("Content-Type", "text/html");
       ctx.body = await strapi.plugins["app-conf"].services[
         "appconf"
-      ].handleHTML(ctx.origin, ctx.originalUrl);
+      ].handleHTML(ctx.origin, ctx.path);
       return;
     }
 
-    if (isStatic(ctx.originalPath)) {
+    if (isStatic(ctx.path)) {
       ctx.set("Content-Type", mime.contentType(path.extname(ctx.path)));
       ctx.set("Cache-Control", `max-age=${4 * 7 * 24 * 3600}`);
 
       ctx.body = await strapi.plugins["app-conf"].services[
         "appconf"
-      ].handleStatic(ctx.originalPath);
+      ].handleStatic(ctx.origin, ctx.path);
       return;
     }
 
